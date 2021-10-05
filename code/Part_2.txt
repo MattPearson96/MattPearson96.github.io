@@ -1,0 +1,49 @@
+void setup() {
+  size(500, 500);
+  smooth();
+  frameRate(35);
+  strokeWeight(5);
+
+}
+
+void draw() {
+  background(0, 200, 150);
+
+  for (int i=0; i < 10; i =i+5) {
+   fill(255, 0, 0);
+    ellipse(random(245),random(245),30,30);
+
+  line(0, 250, 250, 250);
+  line(250, 0, 250, 300);
+  //noStroke();
+  //noFill();
+
+  fill(random(0, 255));
+  ellipse(mouseX, mouseY, 150, 150);
+  fill(0, 100);
+  rect(149, 149, 200, 200, 30);
+
+} 
+
+String s = "The size is ";
+  int w = 500;
+  int h = 500;
+  println(s);
+  println(w, "x", h);
+
+recordit();
+
+}
+
+void recordit() {
+  
+  if (frameCount<150) {
+  println(frameCount);
+  
+saveFrame("frames/ex1_test_####.png");
+
+  } else {
+    exit();
+
+}
+}

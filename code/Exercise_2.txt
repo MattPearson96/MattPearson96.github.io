@@ -1,0 +1,132 @@
+
+// global variable
+int tCounter = 0;
+
+int value = 200;
+int value2 = 50;
+PFont f;
+PImage knight;
+
+
+void setup() {
+  //printArray(PFont.list());
+
+  f = createFont("sylfaen", 50);
+  textFont (f);
+  fill(255, 0, 0);
+  text("Like and Subscribe", 55, 75);
+
+  frameRate(25);
+  size(500, 500);
+  rectMode(CENTER);
+  imageMode(CENTER);
+  noStroke();
+
+  knight = loadImage("knight.png");
+
+  //for (int i=0; i<20; i++){
+  //print(i + " " + i%3);
+  // }
+}
+
+void draw() {
+  //local variable
+
+
+  background(255-value2);
+
+
+  fill(value2);
+  rect(width/2, height/2, 300, 300, 50);
+
+
+  fill(value);
+  ellipse(width/2, height/2, 100, 100);
+
+  if (mousePressed) {
+    noTint();
+    image(knight, mouseX, mouseY, width/2, height/2);
+  }
+
+
+
+  int x = frameCount % 500;
+
+  fill(255, 0, 0, 500);
+  ellipse(x, height/2, 50, 50);
+  fill(255, 255, 0, 500);
+  ellipse(width/2, x, 50, 50);
+
+  int checkCounter = 0;
+  for ( int i = 0; i < 500; i++) {
+
+    checkCounter++;
+    for (int j = 0; j <500; j++ ) {
+
+      if ((checkCounter%2) == 0) {
+        fill(255, 100);
+      } else {
+        fill(255, 0, 255, 100);
+      }
+      ellipse(j * 10, i*10, 8, 8);
+      checkCounter++;
+    }
+
+    fill(0, 255, 50);
+    text("Like and Subscribe", 55, 75);
+  }
+
+  //for (int i=0; i<width; i++){
+  //int y = i%50;
+  //line (i, 0, i, y);
+  //}
+}
+
+void mouseMoved() {
+
+  println(value);
+
+  value = value -2;
+  value2 = value2 +2;
+
+  if (value < 1) {
+    value = 255;
+  }
+  if (value2 > 255) {
+    value2 = 1;
+  }
+}
+
+void keyPressed() {
+
+  if ( key == 'g' || key == 'G' ) {
+    //toggle logic
+    if (value2 == 0) {
+      value2 = 255;
+    } else {
+      value2 = 0;
+    }
+
+    if (value == 255) {
+      value = 0;
+    } else {
+      value = 255;
+    }
+
+    recordit();
+    
+  }
+  
+}
+  
+
+void recordit() {
+
+    if (frameCount<1000) {
+      println(frameCount);
+
+      saveFrame("frames/ex2_test_####.png");
+    } else {
+      exit();
+    }
+  }

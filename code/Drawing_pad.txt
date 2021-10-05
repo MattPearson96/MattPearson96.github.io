@@ -1,0 +1,169 @@
+char currentkey = '1';
+
+color bgc = color(255);
+
+void setup() {
+
+  size(750,750);
+  background(255);
+  smooth();
+  rectMode(CENTER);
+  
+}
+
+void draw() {
+
+  //clear_print function
+  
+  //if (keyPressed) {
+  //  clear_print();
+    
+  //}
+  
+  //new key choice
+  
+  if (mousePressed) {
+    drawChoice();
+     
+  }
+  
+  recordit();
+}
+
+void drawChoice() {
+
+  // key global variable contains whatever key was last pressed 
+  char currentkey = key;
+
+  switch(currentkey) {
+  case '1': 
+    println("1");  //Right Brain
+    rightbrain(color(0), mouseX, mouseY, pmouseX, pmouseY); 
+    break;
+  case '2': 
+    println("2");  //Left Brain
+    leftbrain(color(255, 0, 0), mouseX, mouseY, pmouseX, pmouseY);
+    break;
+  case '3': 
+    println("3");  // ink pen
+    inkblots(color(random(100)), mouseX, mouseY, pmouseX, pmouseY);
+    break;
+  case '4': 
+    println("4");  // chunky 
+    colorchunks(color(0), mouseX, mouseY, pmouseX, pmouseY);
+    break;
+  case '5': 
+    println("5");  // shadow
+    shadow(color(random(255)), mouseX, mouseY, pmouseX, pmouseY);
+    break;
+    case '6': 
+    println("6");  //random dots
+    dots(color(random(255),random(255),random(255)), mouseX, mouseY, 25, 25);
+    break;
+    case '7': 
+    println("7");  // erase with bg color
+    eraser(color(255), mouseX, mouseY, 25);
+    break;
+   
+  default:             // Default executes if the case labels
+    println("None");   // don't match the switch parameter
+    break;
+  }
+}
+
+void drawline(color k, int lx, int ly, int px, int py) {
+  strokeWeight(1);
+  stroke(k);
+  //noStroke();
+  fill(0);
+  line(lx,ly,px,py);
+}
+
+void rightbrain(color k, int lx, int ly, int px, int py) {
+  strokeWeight(5);
+  //stroke(k);
+  noStroke();
+  fill(random(255), random(255), random(255));
+ellipse(mouseX, mouseY, 5*(pmouseX-mouseX), 5*(pmouseY-mouseY));
+}
+
+void leftbrain(color k, int lx, int ly, int px, int py) {
+  strokeWeight(1);
+  //stroke(k);
+  noStroke();
+  fill(random(255));
+  rect (mouseX, mouseY, 4*(pmouseX-mouseX), 4*(pmouseY-mouseY));
+}
+
+void inkblots(color k, int lx, int ly, int px, int py) {
+  strokeWeight(1);
+  //stroke(k);
+  noStroke();
+  fill(random(75));
+  ellipse(mouseX, mouseY, 5*(pmouseX-mouseX), 5*(pmouseY-mouseY));
+}
+
+void colorchunks(color k, int lx, int ly, int px, int py) {
+  strokeWeight(1);
+  //stroke(k);
+  noStroke();
+  fill(random(255), random(255), random(255));
+  rect (mouseX, mouseY, 6*(pmouseX-mouseX), 6*(pmouseY-mouseY));
+}
+
+void shadow(color k, int lx, int ly, int px, int py) {
+  strokeWeight(1);
+  //stroke(k);
+  noStroke();
+  fill(random(255),50);
+  ellipse(lx,ly,random(50),random(50));
+}
+
+void drawFatLine(color k, int lx, int ly, int px, int py) {
+  strokeWeight(10);
+  stroke(k);
+  line(lx, ly, px, py);
+}
+
+void dots(color k, int lx, int ly, int px, int py) {
+  strokeWeight(8);
+  //stroke(k);
+  noStroke();
+   fill(random(255), random(255), random(255));
+  ellipse(random(750),random(750),px, py);
+}
+
+void eraser(color k, int lx, int ly, int sz) {
+  //stroke(k);
+  noStroke();
+  fill(255);
+  ellipse(lx, ly, sz, sz);
+}
+
+
+//void clear_print() {
+
+//  // these 2 options let you choose between clearing the background
+//  // and saveing the current image as a file.
+//  if (key == 'x' || key == 'X') {
+//    background(255);
+//  } else if (key == 'p' || key == 'P') {
+//   saveFrame("images/matt_paint_x_xxx_####.png");
+//    //this will save the name as the intials and a random counting number.
+//    // it will always be larger in value then the last one.
+//    // delay(20);
+
+//}
+
+void recordit(){
+  
+  if (frameCount<1000) {
+  println(frameCount);
+  
+saveFrame("frames/drawing_pad_test_####.png");
+
+  } else {
+    exit();
+
+  }
+}

@@ -1,0 +1,158 @@
+int counter = 0;
+
+void setup() {
+  size(500,500);
+  background(0);
+  noStroke();
+  frameRate(20);
+  fill(255,0,0);
+  //rectMode(CENTER);
+                  //rep, r, g, b
+  //mattAugustPearson(100, 0, 255, 200);
+  
+}
+
+
+void draw() {
+  
+  fill(0,10);
+  
+  rect(0,0,width,height);
+  
+  mattPearson();
+  
+  push();
+  
+  scale(.80);
+  
+  translate(70,70);
+  
+  //radians(rotate)
+  rotate(radians(-mouseX));
+  
+  fill(255,0,255);
+  head();
+  
+  pop();
+  
+  push();
+  
+  translate(190,25);
+  
+  //radians(rotate)
+  rotate(radians(mouseX));
+  
+  fill(0,255,255);
+  head();
+  
+  pop();
+   
+  //body();
+  //arms();
+  //legs();
+  
+  //counter++;
+  
+  //if (counter>360){
+  //  counter = 0;
+  //}
+
+}
+
+void head() {
+  
+  //rotate(radians(mouseX));
+  
+  //fill(255);
+  ellipse(150,150,50,70);
+  
+  body();
+  
+}
+
+void body() {
+  
+  push();
+  
+  translate(0,0);
+  
+  //fill(255);
+  rect(115,200,70,120,10);
+  
+  arms();
+  
+  pop();
+  
+}
+
+void arms() {
+  
+  push();
+  
+  translate(0,0);
+  
+  //fill(255);
+  rect(95,200,15,120,10);
+  rect(190,200,15,120,10);
+
+  legs();
+  
+  pop();
+  
+}
+
+void legs() {
+  
+  push();
+  
+  
+  translate(0,0);
+  
+  //fill(255);
+  rect(115,290,15,140,10);
+  rect(170,290,15,140,10);
+  
+  pop();
+  
+}
+
+
+void mattPearson() {
+  
+  println("hello I am Matt"); 
+  fill(0,255,0);
+  text("Matt",random(width),random(height),100,50);
+  
+  
+  
+
+
+//void mattAugustPearson(int count, int rr, int gg, int bb) {
+  
+//  //println("hello I am Matt"); 
+  
+//  fill(255,0,0);
+  
+//  for ( int i = 0; i < count; i++) {
+//  text("Matt" + i,random(width),random(height),100,50);
+  
+//  }
+  
+  recordit();
+    
+  }
+  
+
+void recordit() {
+
+    if (frameCount<300) {
+      println(frameCount);
+
+      saveFrame("frames/ex3_test_####.png");
+    } else {
+      exit();
+    }
+  
+  
+  
+}
